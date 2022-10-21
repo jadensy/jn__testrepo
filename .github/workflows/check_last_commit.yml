@@ -15,13 +15,15 @@ jobs:
           repository: Moneylion/de-periscope-2nd
           token: ${{ secrets.PAT__DE_PERISCOPE_2ND }}
           ref: periscope/master
-          fetch-depth: 1
+          fetch-depth: 25
 
       - name: Check for commits within time
         uses: AlexHolderDeveloper/CommitsWithinTime@v1.1.5
         id: commitswithintime
         with:
           hours: 24
+          emailAddressesToFocus: '{"allowedEmailAddressesList": ["periscope@periscopedata.com"]}'
+          
 
       - name: Get the output from CommitsWithinTime
         run: |
