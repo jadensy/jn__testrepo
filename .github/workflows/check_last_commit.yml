@@ -12,8 +12,10 @@ jobs:
       - name: Fetch periscope/master branch
         uses: actions/checkout@v3
         with:
-          ref: master
-          fetch-depth: 0
+          repository: Moneylion/de-periscope-2nd
+          token: ${{ secrets.PAT__DE_PERISCOPE_2ND }}
+          ref: periscope/master
+          fetch-depth: 1
 
       - name: Check for commits within time
         uses: AlexHolderDeveloper/CommitsWithinTime@v1.1.5
