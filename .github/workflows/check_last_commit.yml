@@ -28,3 +28,15 @@ jobs:
           echo "The 'has-new-commits-within-time' value is ${{ steps.commitswithintime.outputs.has-new-commits-within-time }}"
           echo "The 'number-of-commits-within-time' value is ${{ steps.commitswithintime.outputs.number-of-commits-within-time }}"
           echo "The 'total-commits' value is ${{ steps.commitswithintime.outputs.total-commits }}"
+
+      - name: Slack Notification
+        uses: ravsamhq/notify-slack-action@v2
+        if: ${{ steps.commitswithintime.outputs.has-new-commits-within-time }} == 'true'
+        with:
+          status: ${{ job.status }}
+          notification_title: "Repo updated within last 24 hours"
+          message_format: "Beep"
+          # footer: "Linked Repo <{repo_url}|{repo}> | <{workflow_url}|View Workflow> | <{run_url} |View Run>"
+          notify_when: "success"
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
