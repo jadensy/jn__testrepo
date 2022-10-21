@@ -33,7 +33,7 @@ jobs:
 
       - name: Slack Notification
         uses: ravsamhq/notify-slack-action@v2
-        if: ${{ steps.commitswithintime.outputs.has-new-commits-within-time == 'true' }} 
+        if: ${{ steps.commitswithintime.outputs.has-new-commits-within-time == 'false' }} 
         with:
           status: ${{ job.status }}
           notification_title: "Repo updated within last 24 hours"
